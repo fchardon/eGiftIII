@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLarge } from './x-large';
+import { EventService } from '../services/event.service';
+import { EventModel } from '../models/event.model';
+import { UserService } from '../services/user.service';
+import { UserModel } from '../models/user.model';
 
 @Component({
   // The selector is what angular internally uses
@@ -19,21 +23,49 @@ import { XLarge } from './x-large';
   templateUrl: './home.template.html'
 })
 export class Home {
+
+  events: Array<EventModel> = [];
+  users: Array<UserModel> = [];
+  displayLogin: boolean = false;
   // Set our default values
   localState = { value: '' };
   // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title) {
+  constructor(public appState: AppState, public title: Title, private userService: UserService, private eventService: EventService) {
 
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
+
+    this.userService.loadUsers().subscribe(users => {
+      this.users = users;
+    });
+
+
+    this.eventService.loadEventsBy(this.appState.userId).subscribe(events => {
+      console.log(events);
+      this.events = events;
+    });
   }
 
   submitState(value: string) {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+  isBeta(): boolean {
+    return true;
+  }
+
+  showLogin(): void {
+    this.displayLogin = true;
+  }
+
+
+
+  loadEvent(eventId: number) {
+    console.log(eventId);
   }
 }

@@ -1,0 +1,21 @@
+<div class="row " *ngIf="!editGift" >
+  <div class="col-md-4" ><a class="personne" *ngIf="containsLink(gift)">{{gift.name}}</a><span class="personne" *ngIf="!containsLink(gift)">{{gift.name}}</span>&nbsp;&nbsp;<a *ngIf="displayEdit" class="glyphicon glyphicon-pencil" (click)="editGift = true"></a></div>
+  <div class="col-md-5"><span>{{gift.description}}</span></div>
+
+  <div class="col-md-1"><a *ngIf="displayEdit" class="glyphicon glyphicon-remove" (click)="removeGifts()" pTooltip="Supprimer le cadeau"></a></div>
+  <div class="gift"></div>
+</div>
+<span *ngIf="editGift">
+  <form>
+    <div class="row">
+       <div class="col-md-4" ><input name="name" placeholder="Titre" [(ngModel)]="gift.name" style="width: 100%"></div>
+       <div class="col-md-8" ><input name="url" placeholder="Lien" [(ngModel)]="gift.url" style="width: 100%"></div>
+    </div>
+    <div class="row">
+       <div class="col-md-12"><input name="description" placeholder="Description" [(ngModel)]="gift.description" style="width: 100%;"></div>
+    </div>
+  </form>
+
+  <button class="btn btn-xs btn-primary" (click)="addClicked()">Enregistrer</button>
+  <button class="btn btn-xs btn-default" (click)="cancelClicked()">Annuler</button>
+</span>

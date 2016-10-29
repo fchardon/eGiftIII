@@ -6,7 +6,13 @@ export type InteralStateType = {
 
 @Injectable()
 export class AppState {
+
+  userId: number = 1;
+  eventId: number = 1;
+  listId: number = 12;
+
   _state: InteralStateType = { };
+
 
   constructor() {
 

@@ -1,0 +1,8 @@
+/*styles for home content only*/
+
+a {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 24px;
+}

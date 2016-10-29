@@ -1,0 +1,26 @@
+<div class="container main">
+  <div class="row" style="height: 100%">
+    <div class="col-md-3 left-area">
+      <h3>Ma liste</h3>
+      <div *ngFor="let personne of personnes" class="personne">
+        <ec-personne [personne]="personne" [isSelected]="isSelected(personne)" (add)="updatePersonne($event)"
+                   (gift)="displayGift($event)" (remove)="removePersonne($event)"></ec-personne>
+      </div>
+
+      <ec-personne *ngIf="displayAddPersonne" (cancel)="cancelAddPersonne()"
+                   (add)="addPersonne($event)"></ec-personne>
+      <button type="button" class="btn btn-xs btn-primary" *ngIf="!displayAddPersonne" (click)="opendAdd()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Personne</button>
+
+    </div>
+
+    <div class="col-md-9 right-area">
+      <ec-my-gifts *ngIf="personneGift != null" [personneObs]="newPersonneObs()"></ec-my-gifts>
+    </div>
+
+  </div>
+
+
+
+
+</div>
+{{wishUid}}

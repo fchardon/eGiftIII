@@ -1,0 +1,17 @@
+<div class="row personneline" *ngIf="!editPersonne" >
+  <div class="col-md-9" style="cursor: pointer" (click)="displayGifts()">
+      <a class="glyphicon glyphicon-gift" ></a>&nbsp;<a  class="personne" [class.edit]="isSelected" >{{personne.lastName}}</a>
+      <a *ngIf="displayEdit" class="glyphicon glyphicon-pencil" (click)="editPersonne = true"></a></div>
+  <div class="col-md-1"><a *ngIf="displayEdit" class="glyphicon glyphicon-remove" (click)="removePersonne()"></a></div>
+</div>
+  <span *ngIf="editPersonne">
+  <form >
+    <div>
+      <input name="name" [(ngModel)]="personne.lastName">
+    </div>
+
+  </form>
+
+  <button class="btn btn-xs btn-primary" (click)="addClicked()">Enregister</button>
+  <button class="btn btn-xs btn-default" (click)="cancelClicked()">Annuler</button>
+</span>

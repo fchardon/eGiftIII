@@ -1,0 +1,8 @@
+<h1>Gérer ma liste</h1>
+<div>
+  <ul>
+    <li *ngFor="let list of lists"><a href="" (click)="loadList(list.id)">{{list.name}}</a></li>
+
+  </ul>
+
+</div>

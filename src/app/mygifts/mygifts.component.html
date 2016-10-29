@@ -1,0 +1,11 @@
+<div>
+  <h3>Cadeaux Pour {{personne.name}}</h3>
+</div>
+
+<div *ngFor="let gift of gifts">
+  <ec-my-gift [gift]="gift" (add)="updateGift($event)" (remove)="removeGift($event)"></ec-my-gift>
+</div>
+<div>
+<ec-my-gift *ngIf="displayAddGift" (add)="addGift($event)" (cancel)="displayAddGift = false" ></ec-my-gift>
+    <button type="button" class="btn btn-xs btn-primary" *ngIf="!displayAddGift" (click)="displayAddGift = true"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Cadeau</button>
+</div>

@@ -1,0 +1,4 @@
+<div class="text-center">
+  <h1>Choisis ton évènement</h1>
+  <div *ngFor="let event of events"><a href="" [routerLink]="['/users', userId, 'events', event.uid]" >{{event.name}}</a>&nbsp;<span class="glyphicon glyphicon-dashboard"></span><span>{{event.description}}</span></div>
+</div>
