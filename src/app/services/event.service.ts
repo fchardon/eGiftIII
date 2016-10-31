@@ -17,11 +17,11 @@ export class EventService {
   }
 
   get apiUrl(): string {
-    return AppSettings.API_ENDPOINT+'/api/events';
+    return AppSettings.API_ENDPOINT+'events';
   }
 
   get url(): string {
-    return AppSettings.API_ENDPOINT+'/events';
+    return AppSettings.API_REPO_ENDPOINT+'events';
   }
 
 

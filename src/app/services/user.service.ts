@@ -15,11 +15,11 @@ export class UserService {
   }
 
   get apiUrl(): string {
-    return AppSettings.API_ENDPOINT+'/api/users';
+    return AppSettings.API_ENDPOINT+'users';
   }
 
   get url(): string {
-    return AppSettings.API_ENDPOINT+'/users';
+    return AppSettings.API_REPO_ENDPOINT+'users';
   }
 
   loadUsers(): Observable<Array<UserModel>> {

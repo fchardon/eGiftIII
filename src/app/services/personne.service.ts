@@ -17,11 +17,11 @@ export class PersonneService {
   }
 
   get apiUrl(): string {
-    return AppSettings.API_ENDPOINT+'/api/'+this.baseUrl;
+    return AppSettings.API_ENDPOINT+this.baseUrl;
   }
 
   get url(): string {
-    return AppSettings.API_ENDPOINT+'/'+this.baseUrl;
+    return AppSettings.API_REPO_ENDPOINT+this.baseUrl;
   }
 
   loadPersonne(userId: number, eventId: number):Observable<Array<PersonneModel>> {
