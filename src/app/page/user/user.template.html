@@ -1,4 +1,8 @@
-<div class="text-center">
+<div class="text-center home" >
   <h1>Choisis ton évènement</h1>
-  <div *ngFor="let event of events"><a href="" [routerLink]="['/users', userId, 'events', event.uid]" >{{event.name}}</a>&nbsp;<span class="glyphicon glyphicon-dashboard"></span><span>{{event.description}}</span></div>
+  <div *ngFor="let event of events">
+    <div class="home-liste">
+    <a href="" [routerLink]="['/users', userId, 'events', event.uid]" >{{event.name}}</a>,&nbsp;le&nbsp;<span>{{event.description}}</span>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { GiftModel } from '../models/gift.model';
 import { GiftService } from '../services/gift.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { OtherGiftModel } from '../models/othergift.model';
 
 
 
@@ -14,20 +15,23 @@ import { UserService } from '../services/user.service';
 })
 export class AllGifts implements OnInit {
 
- gifts: Array<GiftModel> = [];
+ gifts: Array<OtherGiftModel> = [];
 
   constructor(private route:ActivatedRoute,private giftService: GiftService, private userService: UserService) {}
 
   ngOnInit() {
 
-    let eventId = this.route.snapshot.params['eventId'];
-    let listId = this.route.snapshot.params['listId'];
     // Change with observable
-    let userId = this.route.snapshot.params['userId'];
+    this.route.params.subscribe(params => {
+      let eventId = +params['eventId'];
+      let userId = +params['userId'];
+      this.giftService.loadOtherGiftsFrom(userId, eventId)
+        .subscribe(gifts => this.gifts = gifts);
+    });
 
-    this.giftService.loadOtherGiftsFrom(userId, eventId)
-      .subscribe(gifts => this.gifts = gifts);
   }
+
+
 
 
 

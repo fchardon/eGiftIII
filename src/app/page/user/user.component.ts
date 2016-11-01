@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, HostListener } from '@angular/core';
 import { AppState } from '../../app.service';
 import { Title } from './title';
 import { XLarge } from './x-large';
@@ -10,18 +9,16 @@ import { EventModel } from '../../models/event.model';
 @Component({
   providers: [],
   templateUrl: './user.template.html',
-  styleUrls: [ './user.style.css' ],
+  styleUrls: ['./user.style.css'],
 })
 export class UserComponent {
 
   events: Array<EventModel>;
-
+  display: boolean = false;
   // TypeScript public modifiers
   constructor(public appState: AppState, private route: ActivatedRoute, private eventService: EventService) {
 
   }
-
-
 
   ngOnInit() {
     let id = this.route.snapshot.params['userId'];
@@ -29,6 +26,14 @@ export class UserComponent {
     this.eventService.loadEventsBy(id)
       .subscribe(events => this.events = events);
 
+  }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.display = true;
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.display = false;
   }
 
   get userId(): number {

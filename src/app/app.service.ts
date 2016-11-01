@@ -9,6 +9,7 @@ export class AppState {
 
   userId: number = 1;
   eventId: number = 1;
+  eventName: string = null;
   listId: number = 12;
 
   _state: InteralStateType = { };

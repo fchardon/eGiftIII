@@ -1,6 +1,7 @@
-<div class="text-center" style="margin-top: 100px">
-  <h1>eGift III <small>Sois prêt pour une meilleur fête</small></h1>
+<div class="text-center home" >
+  <h1>eGift III <small>- Gestion de liste de cadeaux -</small></h1>
 </div>
+
 
 <div class="text-center" *ngIf="!isBeta()">
   <a class="btn btn-primary" routerLink="register">Register</a> || <a class="btn btn-primary" routerLink="login">Login</a>
@@ -13,7 +14,7 @@
 <div class="text-center" *ngIf="isBeta() && displayLogin">
   <ec-login *ngIf="!isBeta()"></ec-login>
   <div>Qui est tu ?</div>
-  <div *ngFor="let user of users"><a href="" [routerLink]="['/users', user.uid]" >{{user.lastName}}</a></div>
+  <div class="home-liste" *ngFor="let user of users"><a href="" [routerLink]="['/users', user.uid]" >{{user.lastName}}</a></div>
 </div>
 
 

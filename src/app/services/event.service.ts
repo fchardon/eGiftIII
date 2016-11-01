@@ -35,6 +35,11 @@ export class EventService {
     .map(res => res.json()._embedded.events);
   }
 
+  loadEventById(eventId: number): Observable<EventModel> {
+    return this.http.get(this.url+`/${eventId}`)
+      .map(res => res.json());
+  }
+
   addGift(gift: GiftModel): Observable<GiftModel> {
     return this.http.post(this.url, gift)
       .map(res => res.json());

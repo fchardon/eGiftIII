@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { GiftModel } from '../models/gift.model';
 import * as _ from 'lodash';
 import { AppSettings } from '../appSettings';
+import { OtherGiftModel } from '../models/othergift.model';
 
 @Injectable()
 export class GiftService {
@@ -48,8 +49,14 @@ export class GiftService {
 
 
 
-  loadOtherGiftsFrom(userId: number, eventId: number):Observable<Array<GiftModel>> {
+  loadAllOtherGiftsFrom(userId: number, eventId: number):Observable<Array<GiftModel>> {
     return this.http.get(this.url+`/search/findOtherUsersByEvent?userId=${userId}&eventId=${eventId}`)
       .map(res => res.json()._embedded.gifts);
+  }
+
+
+  loadOtherGiftsFrom(userId: number, eventId: number):Observable<Array<OtherGiftModel>> {
+    return this.http.get(this.apiUrl+`/user/${userId}/event/${eventId}/other`)
+      .map(res => res.json());
   }
 }

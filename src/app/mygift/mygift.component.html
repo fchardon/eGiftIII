@@ -1,5 +1,5 @@
 <div class="row " *ngIf="!editGift" >
-  <div class="col-md-4" ><a class="personne" *ngIf="containsLink(gift)">{{gift.name}}</a><span class="personne" *ngIf="!containsLink(gift)">{{gift.name}}</span>&nbsp;&nbsp;<a *ngIf="displayEdit" class="glyphicon glyphicon-pencil" (click)="editGift = true"></a></div>
+  <div class="col-md-4" ><a class="personne" *ngIf="gift.url" href="{{gift.url}}" target="_blank">{{gift.name}}</a><span class="personne" *ngIf="!gift.url">{{gift.name}}</span>&nbsp;&nbsp;<a *ngIf="displayEdit" class="glyphicon glyphicon-pencil" (click)="editGift = true"></a></div>
   <div class="col-md-5"><span>{{gift.description}}</span></div>
 
   <div class="col-md-1"><a *ngIf="displayEdit" class="glyphicon glyphicon-remove" (click)="removeGifts()" pTooltip="Supprimer le cadeau"></a></div>

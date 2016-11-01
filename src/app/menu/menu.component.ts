@@ -23,6 +23,10 @@ export class Menu implements OnInit {
     return this.appState.eventId;
   }
 
+  get eventName(): string {
+    return this.appState.eventName;
+  }
+
   get userId(): number {
     return this.appState.userId;
   }

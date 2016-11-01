@@ -32,15 +32,15 @@ export class List implements OnInit {
     let listId = this.route.snapshot.params['listId'];
     let eventId = this.route.snapshot.params['eventId'];
 
-    this.personneService.loadPersonne(userId, eventId)
-      .subscribe(personnes => this.personnes = personnes);
-
-    this.wishService.loadWishUid(userId, eventId)
+    this.wishService.loadWishUid(eventId, userId)
       .subscribe(uid => {
         console.log("loadWishUid:"+uid);
-        this.wishUid = uid});
-    //this.listService.loadMyList(listId, 0)
-    //  .subscribe(list => this.myList = list);
+        this.wishUid = uid;
+        this.wishService.loadPersonnesByWish(uid)
+          .subscribe(personnes => this.personnes = personnes);
+      }
+      );
+
   }
 
  get personneObs(): Observable<PersonneModel> {
@@ -92,10 +92,10 @@ export class List implements OnInit {
     }
   }
 
-  removePersonne(personne: PersonneModel) {
-    this.wishService.removePersonneToWish(this.wishUid, personne.uid)
+  removePersonne(personneToRemove: PersonneModel) {
+    this.wishService.removePersonneToWish(this.wishUid, personneToRemove.uid)
       .subscribe(personne => {
-        var index = this.personnes.indexOf(personne, 0);
+        var index = this.personnes.indexOf(personneToRemove, 0);
         if (index > -1) {
           this.personnes.splice(index, 1);
         }

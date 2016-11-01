@@ -38,6 +38,9 @@ export class Home {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
 
+    this.appState.eventId = null;
+    this.appState.userId = null;
+
     this.userService.loadUsers().subscribe(users => {
       this.users = users;
     });

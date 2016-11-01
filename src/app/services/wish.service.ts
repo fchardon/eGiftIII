@@ -31,6 +31,11 @@ export class WishService {
       .map(res => res.json());
   }
 
+  loadPersonnesByWish(wishId: number): Observable<PersonneModel[]> {
+    return this.http.get(this.url+'/'+wishId+'/personnes')
+      .map(res => res.json()._embedded.personnes);
+  }
+
   loadWishUid(eventId: number, userId: number): Observable<number> {
     return this.http.get(this.url+'/search/findForEvent?eventId='+eventId+'&userId='+userId)
       .map(res => res.json().uid);

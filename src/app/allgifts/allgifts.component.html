@@ -2,10 +2,12 @@
   <h3>Liste des cadeaux disponible</h3>
 </div>
 <p-dataTable [value]="gifts">
-  <p-column field="name" header="Nom">
+  <p-column field="name" header="Cadeau">
     <template let-gift="rowData" pTemplate type="body">
      <a href="{{gift.url}}">{{gift.name}}</a>
     </template>
+  </p-column>
+  <p-column field="personneName" header="Pour">
   </p-column>
   <p-column field="description" header="Description"></p-column>
   <p-column field="status" header="Status"></p-column>
