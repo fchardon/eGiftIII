@@ -8,6 +8,7 @@ export type InteralStateType = {
 export class AppState {
 
   userId: number = 1;
+  userName: string = null;
   eventId: number = 1;
   eventName: string = null;
   listId: number = 12;

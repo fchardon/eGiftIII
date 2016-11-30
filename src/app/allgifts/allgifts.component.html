@@ -1,25 +1,25 @@
 <div>
   <h3>Liste des cadeaux disponible</h3>
 </div>
-<p-dataTable [value]="gifts">
+<p-dataTable [value]="gifts" sortField="personneName">
   <p-column field="name" header="Cadeau">
     <template let-gift="rowData" pTemplate type="body">
      <a href="{{gift.url}}">{{gift.name}}</a>
     </template>
   </p-column>
-  <p-column field="personneName" header="Pour">
-  </p-column>
+  <p-column field="personneName" header="Pour"></p-column>
+  <p-column field="userName" header="Par"></p-column>
   <p-column field="description" header="Description"></p-column>
   <p-column field="status" header="Status"></p-column>
   <p-column field="action" header="Action">
     <template let-gift="rowData" pTemplate type="body">
-      <button *ngIf="isDisponible(gift)" class="btn btn-primary btn-xs" type="button" (click)="reserver(gift)" >Je reserve</button>
-      <button *ngIf="isReserve(gift)" class="btn btn-success btn-xs" type="button"  (click)="acheter(gift)" >J'ai acheté</button>
+      <button *ngIf="isDisponible(gift)"  class="btn btn-primary btn-xs" type="button" (click)="reserver(gift)" >Je reserve</button>
+      <button *ngIf="isReserve(gift)" [disabled]="!isProperty(gift)" class="btn btn-success btn-xs" type="button"  (click)="acheter(gift)" >J'ai acheté</button>
     </template>
   </p-column>
   <p-column field="action" header="Annuler">
     <template let-gift="rowData" pTemplate type="body">
-      <button *ngIf="isAnnulable(gift)" class="btn btn-danger btn-xs" type="button" (click)="annuler(gift)" >J'annule</button>
+      <button *ngIf="isAnnulable(gift)" [disabled]="!isProperty(gift)" class="btn btn-danger btn-xs" type="button" (click)="annuler(gift)" >J'annule</button>
     </template>
   </p-column>
 </p-dataTable>

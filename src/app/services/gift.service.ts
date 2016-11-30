@@ -47,6 +47,13 @@ export class GiftService {
       .map(res => res.json());
   }
 
+  updateGift3(userId: number, giftId: number, gift: GiftModel): Observable<OtherGiftModel> {
+    return this.http.post(this.apiUrl+`/${giftId}/gift/${userId}`, gift)
+      .map(res => res.json());
+  }
+
+
+
 
 
   loadAllOtherGiftsFrom(userId: number, eventId: number):Observable<Array<GiftModel>> {

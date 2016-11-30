@@ -6,6 +6,7 @@ import { GiftService } from '../services/gift.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { OtherGiftModel } from '../models/othergift.model';
+import { AppState } from '../app.service';
 
 
 
@@ -17,7 +18,7 @@ export class AllGifts implements OnInit {
 
  gifts: Array<OtherGiftModel> = [];
 
-  constructor(private route:ActivatedRoute,private giftService: GiftService, private userService: UserService) {}
+  constructor(private route:ActivatedRoute,private giftService: GiftService, private userService: UserService, private appState: AppState) {}
 
   ngOnInit() {
 
@@ -52,19 +53,33 @@ export class AllGifts implements OnInit {
     return gift.status === 'ACHETE' || gift.status === 'RESERVE';
   }
 
-  reserver(gift: GiftModel): void {
+  isProperty(gift: OtherGiftModel): boolean{
+    return gift.userName === this.appState.userName;
+  }
+
+  reserver(gift: OtherGiftModel): void {
     gift.status = 'RESERVE';
-    this.giftService.updateGift2(gift.uid, gift).subscribe(res => console.log(res));
+    this.giftService.updateGift3(this.appState.userId, gift.uid, gift).subscribe(res => {
+      console.log(res);
+      gift.userName = this.appState.userName;
+    });
   }
 
-  annuler(gift: GiftModel): void {
+  annuler(gift: OtherGiftModel): void {
     gift.status = 'DISPONIBLE';
-    this.giftService.updateGift2(gift.uid, gift).subscribe(res => console.log(res));
+    this.giftService.updateGift3(this.appState.userId, gift.uid, gift).subscribe(res => {
+        console.log(res);
+        gift.userName = "";
+      }
+    );
   }
 
-  acheter(gift: GiftModel): void {
+  acheter(gift: OtherGiftModel): void {
     gift.status = 'ACHETE';
-    this.giftService.updateGift2(gift.uid, gift).subscribe(res => console.log(res));
+    this.giftService.updateGift3(this.appState.userId, gift.uid, gift).subscribe(res => {
+      console.log(res);
+      gift.userName = this.appState.userName;
+    });
   }
 
 

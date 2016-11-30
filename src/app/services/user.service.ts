@@ -27,6 +27,11 @@ export class UserService {
       .map(res => res.json()._embedded.users);
   }
 
+  loadBy(userId: number): Observable<UserModel> {
+    return this.http.get(this.url+"/"+userId)
+      .map(res => res.json());
+  }
+
 
   loadOtherUsersFromEvent(eventId: number, userId: number):Observable<Array<UserModel>> {
     return this.http.get(this.url+'/search/findOtherUsersByEvent?eventId='+eventId+'&userId='+userId)
